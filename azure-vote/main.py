@@ -38,7 +38,7 @@ exporter = metrics_exporter.new_metrics_exporter(
 # Tracing
 tracer = Tracer(
     exporter=AzureExporter(
-        connection_string='InstrumentationKey=25578d7a-2f3e-4f63-aa97-39b91737dee7'),
+        connection_string='InstrumentationKey=7c5b861a-1af8-4bbd-9488-c03ca464102c'),
     sampler=ProbabilitySampler(1.0)
 )
 
