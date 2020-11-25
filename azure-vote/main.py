@@ -27,18 +27,18 @@ logger = logging.getLogger(__name__)
 
 # TODO: replace the all-zero GUID with your instrumentation key.
 logger.addHandler(AzureLogHandler(
-    connection_string='InstrumentationKey=7c5b861a-1af8-4bbd-9488-c03ca464102c')
+    connection_string='InstrumentationKey=7c5b861a-1af8-4bbd-9488-c03ca464102c;IngestionEndpoint=https://centralus-0.in.applicationinsights.azure.com/')
 )
 
 # Metrics
 exporter = metrics_exporter.new_metrics_exporter(
   enable_standard_metrics=True,
-  connection_string='InstrumentationKey=7c5b861a-1af8-4bbd-9488-c03ca464102c')
+  connection_string='InstrumentationKey=7c5b861a-1af8-4bbd-9488-c03ca464102c;IngestionEndpoint=https://centralus-0.in.applicationinsights.azure.com/')
 
 # Tracing
 tracer = Tracer(
     exporter=AzureExporter(
-        connection_string='InstrumentationKey=7c5b861a-1af8-4bbd-9488-c03ca464102c'),
+        connection_string='InstrumentationKey=7c5b861a-1af8-4bbd-9488-c03ca464102c;IngestionEndpoint=https://centralus-0.in.applicationinsights.azure.com/'),
     sampler=ProbabilitySampler(1.0)
 )
 
@@ -47,7 +47,7 @@ app = Flask(__name__)
 # Requests
 middleware = FlaskMiddleware(
     app,
-    exporter=AzureExporter(connection_string="InstrumentationKey=7c5b861a-1af8-4bbd-9488-c03ca464102c"),
+    exporter=AzureExporter(connection_string="InstrumentationKey=7c5b861a-1af8-4bbd-9488-c03ca464102c;IngestionEndpoint=https://centralus-0.in.applicationinsights.azure.com/"),
     sampler=ProbabilitySampler(rate=1.0)
 )
 
