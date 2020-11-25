@@ -27,13 +27,13 @@ logger = logging.getLogger(__name__)
 
 # TODO: replace the all-zero GUID with your instrumentation key.
 logger.addHandler(AzureLogHandler(
-    connection_string='InstrumentationKey=25578d7a-2f3e-4f63-aa97-39b91737dee7')
+    connection_string='InstrumentationKey=7c5b861a-1af8-4bbd-9488-c03ca464102c')
 )
 
 # Metrics
 exporter = metrics_exporter.new_metrics_exporter(
   enable_standard_metrics=True,
-  connection_string='InstrumentationKey=25578d7a-2f3e-4f63-aa97-39b91737dee7')
+  connection_string='InstrumentationKey=7c5b861a-1af8-4bbd-9488-c03ca464102c')
 
 # Tracing
 tracer = Tracer(
@@ -47,7 +47,7 @@ app = Flask(__name__)
 # Requests
 middleware = FlaskMiddleware(
     app,
-    exporter=AzureExporter(connection_string="InstrumentationKey=25578d7a-2f3e-4f63-aa97-39b91737dee7"),
+    exporter=AzureExporter(connection_string="InstrumentationKey=7c5b861a-1af8-4bbd-9488-c03ca464102c"),
     sampler=ProbabilitySampler(rate=1.0)
 )
 
