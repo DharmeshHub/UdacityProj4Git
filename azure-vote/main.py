@@ -129,8 +129,20 @@ def index():
         else:
 
             # Insert vote result into DB
+                      
+            # Insert vote result into DB
             vote = request.form['vote']
+            if vote.lower() == 'dogs':
+                tc.track_event('Dogs Vote Event')
+                tc.track_trace('Dogs Vote Trace')
+            else:
+                tc.track_event('Cats Vote Event')
+                tc.track_trace('Cats Vote Trace')
+           
+            tc.flush()
             r.incr(vote,1)
+            
+            
             # Get current values
             vote1 = r.get(button1).decode('utf-8')
             # tracer.span(name=str(vote1))
