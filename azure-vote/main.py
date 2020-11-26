@@ -27,7 +27,7 @@ from applicationinsights import TelemetryClient
 logger = logging.getLogger(__name__)
 
 tc = TelemetryClient('7c5b861a-1af8-4bbd-9488-c03ca464102c')
-tc.track_event(properties)
+tc.track_event('Vote Event')
 tc.flush()
 
 
