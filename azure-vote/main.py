@@ -17,6 +17,7 @@ from opencensus.ext.azure.trace_exporter import AzureExporter
 from opencensus.trace.samplers import ProbabilitySampler
 from opencensus.trace.tracer import Tracer
 from opencensus.ext.flask.flask_middleware import FlaskMiddleware
+from applicationinsights import TelemetryClient
 
 # App Insights
 # TODO: Import required libraries for App Insights
@@ -24,6 +25,11 @@ from opencensus.ext.flask.flask_middleware import FlaskMiddleware
 # Logging
 # keep stdout/stderr logging using StreamHandler
 logger = logging.getLogger(__name__)
+
+tc = TelemetryClient('7c5b861a-1af8-4bbd-9488-c03ca464102c')
+tc.track_event(properties)
+tc.flush()
+
 
 # TODO: replace the all-zero GUID with your instrumentation key.
 logger.addHandler(AzureLogHandler(
