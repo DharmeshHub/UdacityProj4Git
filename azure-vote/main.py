@@ -27,8 +27,6 @@ from applicationinsights import TelemetryClient
 logger = logging.getLogger(__name__)
 
 tc = TelemetryClient('7c5b861a-1af8-4bbd-9488-c03ca464102c')
-tc.track_event('Vote Event')
-
 
 
 # TODO: replace the all-zero GUID with your instrumentation key.
@@ -97,14 +95,15 @@ def index():
         
         # tracer.span(name=str(vote1))
         with tracer.span(name='dogs') as span:
-            logger.warning('Dogs Vote!')
+            print('Dogs!')
            
         vote2 = r.get(button2).decode('utf-8')
         
         # TODO: use tracer object to trace dog vote
         # tracer.span(name=str(vote2))
         with tracer.span(name='cats') as span:
-            logger.warning('Cats Vote!')
+            print('Cats!')
+            
         # Return index with values
         return render_template("index.html", value1=int(vote1), value2=int(vote2), button1=button1, button2=button2, title=title)
 
@@ -147,12 +146,12 @@ def index():
             vote1 = r.get(button1).decode('utf-8')
             # tracer.span(name=str(vote1))
             with tracer.span(name='dogs') as span:
-                logger.warning('Dogs Vote!')
+                print('Dogs!')
             
             vote2 = r.get(button2).decode('utf-8')
             # tracer.span(name=str(vote2))
             with tracer.span(name='cats') as span:
-                logger.warning('Cats Vote!')
+                print('Cats!')
 
             # Return results
             return render_template("index.html", value1=int(vote1), value2=int(vote2), button1=button1, button2=button2, title=title)
